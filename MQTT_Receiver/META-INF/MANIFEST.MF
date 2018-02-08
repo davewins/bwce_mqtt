@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: MQTT_Receiver
+Bundle-SymbolicName: MQTT_Receiver
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: TIBCO Software Inc.
+TIBCO-BWCE-Edition-Target: docker
+TIBCO-BW-Edition: bwcf
+TIBCO-BW-ConfigProfile: META-INF/default.substvar
+TIBCO-BW-Version: 1.0.6 V24 2017-09-20
+TIBCO-BW-Application: META-INF/TIBCO.xml

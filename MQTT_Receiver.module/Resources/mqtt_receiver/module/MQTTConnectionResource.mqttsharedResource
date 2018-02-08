@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:id="http://www.tibco.com/ws/2013/11/identity" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:mqtt="http://ns.tibco.com/bw/sharedresource/mqtt" xmlns:sca_ext="http://www.tibco.com/ns/sca/201311" xmlns:sslclient="http://xsd.tns.tibco.com/bw/sharedresource/trinity/models/sslclient" xmlns:subject="http://xsd.tns.tibco.com/bw/sharedresource/trinity/models/identity/subject" xmi:id="_d-tL8QKSEeiea-sW9_WAzQ" name="mqtt_receiver.module.MQTTConnectionResource" type="mqtt:MQTTSharedResource">
+  <identitySet xmi:id="_lrEasAKSEeiea-sW9_WAzQ" appliesTo="namedResource" name="HttpClientIdentitySet" provides="confidentiality">
+    <sca_ext:intentMap xmi:id="_lrEasQKSEeiea-sW9_WAzQ" provides="sca_ext:confidentiality">
+      <sca_ext:qualifier xmi:id="_lrEasgKSEeiea-sW9_WAzQ" name="transport">
+        <id:IdentityReference xmi:id="_lrFo0AKSEeiea-sW9_WAzQ" URI="" type="sslclient:SSLClientConfiguration"/>
+      </sca_ext:qualifier>
+    </sca_ext:intentMap>
+  </identitySet>
+  <jndi:reference xmi:id="_eTGHkAKSEeiea-sW9_WAzQ" key="identityServiceProvider" type="subject:SubjectConfiguration" value="mqtt_receiver.module.IdentityProvider"/>
+  <jndi:configuration xsi:type="mqtt:MQTTSharedResource" xmi:id="_d-uaEAKSEeiea-sW9_WAzQ" brokerUrl="tcp://ec2-35-176-111-227.eu-west-2.compute.amazonaws.com:1883" ClientID="TCI" isAuthentication="true" username="admin" password="admin"/>
+</jndi:namedResource>
