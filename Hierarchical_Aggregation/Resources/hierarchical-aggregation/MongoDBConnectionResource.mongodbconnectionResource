@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:mongodb="http://ns.tibco.com/bw/sharedresource/mongodb" xmi:id="_Z6RxcB4IEeW5YMcrZRJLfQ" name="hierarchical-aggregation.MongoDBConnectionResource" type="mongodb:MongoDBConnection">
-  <jndi:configuration xsi:type="mongodb:MongoDBConnection" xmi:id="_Z6SYgB4IEeW5YMcrZRJLfQ" ConnectionURL="mongodb://localhost:27017/?connectTimeoutMS=10000&amp;socketTimeoutMS=0&amp;waitQueueTimeoutMS=120000&amp;maxPoolSize=100" ConnectTimeout="10000" MaxWaitTime="120000" MaxPoolSize="100" CredentialType="None" ServerSelectTimeout="30000">
-    <substitutionBindings xmi:id="_7nuaUDawEeWpQN1TmHWXRg" template="HostPort" propName="Host"/>
-    <substitutionBindings xmi:id="_8zzy8DawEeWpQN1TmHWXRg" template="DatabaseName" propName="DatabaseName"/>
-  </jndi:configuration>
-</jndi:namedResource>
