@@ -8,5 +8,5 @@
     </sca_ext:intentMap>
   </identitySet>
   <jndi:reference xmi:id="_eTGHkAKSEeiea-sW9_WAzQ" key="identityServiceProvider" type="subject:SubjectConfiguration" value="mqtt_receiver.module.IdentityProvider"/>
-  <jndi:configuration xsi:type="mqtt:MQTTSharedResource" xmi:id="_d-uaEAKSEeiea-sW9_WAzQ" brokerUrl="tcp://ec2-35-176-111-227.eu-west-2.compute.amazonaws.com:1883" ClientID="TCI" isAuthentication="true" username="admin" password="admin"/>
+  <jndi:configuration xsi:type="mqtt:MQTTSharedResource" xmi:id="_d-uaEAKSEeiea-sW9_WAzQ" brokerUrl="tcp://ec2-35-176-111-227.eu-west-2.compute.amazonaws.com:1883" ClientID="TCI" isAuthentication="true" username="admin" password="admin" isCleanSession="true"/>
 </jndi:namedResource>

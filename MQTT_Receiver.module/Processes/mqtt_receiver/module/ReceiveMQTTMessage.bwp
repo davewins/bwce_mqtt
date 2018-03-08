@@ -8,6 +8,7 @@
     xmlns:ns="http://www.tibco.com/pe/EngineTypes"
     xmlns:ns0="http://www.tibco.com/bwmqtt/sub"
     xmlns:ns1="http://www.tibco.com/pe/WriteToLogActivitySchema"
+    xmlns:ns2="http://www.tibco.com/bwmqtt/pub"
     xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
     xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
     xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
@@ -191,6 +192,42 @@
             </xs:complexType>
             <xs:element name="ActivityInput" type="tns:LogParametersType"/>
         </xs:schema>
+        <xsd:schema attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://www.tibco.com/bwmqtt/pub"
+            xmlns:tns="http://www.tibco.com/bwmqtt/pub" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element name="MQTTPublicationInput" type="tns:MqttPubIPType"/>
+            <xsd:complexType name="MqttPubIPType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="TopicName" type="tns:TopicNameType"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="IsMessageRetained" type="xsd:boolean"/>
+                    <xsd:element maxOccurs="1" minOccurs="1"
+                        name="Message" type="tns:MessageType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="MessageType">
+                <xsd:choice>
+                    <xsd:element name="TextMessage" type="xsd:string"/>
+                    <xsd:element name="BinaryMessage" type="xsd:base64Binary"/>
+                </xsd:choice>
+            </xsd:complexType>
+            <xsd:simpleType name="TopicNameType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[^+#]{1,65535}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:element name="MQTTPublicationOutput" type="tns:MqttPubOPType"/>
+            <xsd:complexType name="MqttPubOPType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1"
+                        name="TopicName" type="tns:TopicNameType"/>
+                    <xsd:element maxOccurs="1" minOccurs="1"
+                        name="DeliveryComplete" type="xsd:dateTime"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
         <wsdl:definitions
             targetNamespace="http://xmlns.example.com/20180126131415"
             xmlns:tns="http://xmlns.example.com/20180126131415"
@@ -315,6 +352,42 @@
                                     <layoutConstraint x="145"
                                     xsi:type="notation:Bounds" y="128"/>
                                     </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles
+                                    fontName=".SF NS Text"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.2"/>
+                                    <layoutConstraint x="255"
+                                    xsi:type="notation:Bounds" y="128"/>
+                                    </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -372,7 +445,22 @@
             <element href="//0/@process/@activity/@activity/@links/@children.0"/>
             <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
+        <edges
+            source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.1"
+            target="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName=".SF NS Text" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.1"/>
+            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
     </notation:Diagram>
+    <tibex:NamespaceRegistry enabled="true">
+        <tibex:namespaceItem namespace="http://www.tibco.com/bwmqtt/pub" prefix="tns"/>
+        <tibex:namespaceItem namespace="http://www.tibco.com/bwmqtt/sub" prefix="tns1"/>
+    </tibex:NamespaceRegistry>
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
             name="_processContext" sca-bpel:internal="true"/>
@@ -387,6 +475,10 @@
             </bpws:from>
         </bpws:variable>
         <bpws:variable element="ns1:ActivityInput" name="Log-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:MQTTPublicationInput"
+            name="MQTTPublication-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:MQTTPublicationOutput"
+            name="MQTTPublication" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -400,6 +492,7 @@
         <bpws:flow name="flow">
             <bpws:links>
                 <bpws:link name="MQTTSubscriptionToLog" tibex:linkType="SUCCESS"/>
+                <bpws:link name="LogToMQTTPublication" tibex:linkType="SUCCESS"/>
             </bpws:links>
             <bpws:extensionActivity>
                 <tibex:receiveEvent createInstance="yes"
@@ -434,9 +527,12 @@
                     <bpws:targets>
                         <bpws:target linkName="MQTTSubscriptionToLog"/>
                     </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="LogToMQTTPublication"/>
+                    </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; xmlns:tns1=&quot;http://www.tibco.com/bwmqtt/sub&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;MQTTSubscription&quot;/>&lt;xsl:template name=&quot;Log-input&quot; match=&quot;/&quot;>&lt;tns:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;concat(&amp;quot;MQTT Message received: &amp;quot;,tib:base64-to-string(xsd:string($MQTTSubscription/tns1:BinaryMessage)))&quot;/>&lt;/message>&lt;/tns:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; xmlns:tns1=&quot;http://www.tibco.com/bwmqtt/sub&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;MQTTSubscription&quot;/>&#xa;    &lt;xsl:param name=&quot;_processContext&quot;/>&#xa;    &lt;xsl:template name=&quot;Log-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns2:ActivityInput>&#xa;            &lt;message>&#xa;                &lt;xsl:value-of select=&quot;concat(&amp;quot;MQTT Message received: &amp;quot;,tib:base64-to-string(xsd:string($MQTTSubscription/tns1:BinaryMessage)))&quot;/>&#xa;            &lt;/message>&#xa;        &lt;/tns2:ActivityInput>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -450,6 +546,37 @@
                                     <type href="http://ns.tibco.com/bw/palette/generalactivities#//Log"/>
                                     <value role="Info"
                                     suppressJobInfo="true" xsi:type="generalactivities:Log"/>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:activityExtension
+                    inputVariable="MQTTPublication-input"
+                    name="MQTTPublication"
+                    outputVariable="MQTTPublication"
+                    tibex:xpdlId="28b6c6c2-69af-4663-ad37-eaf77c849991" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="LogToMQTTPublication"/>
+                    </bpws:targets>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/bwmqtt/pub&quot; xmlns:tns1=&quot;http://www.tibco.com/bwmqtt/sub&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;MQTTSubscription&quot;/>&lt;xsl:template name=&quot;MQTTPublication-input&quot; match=&quot;/&quot;>&lt;tns:MQTTPublicationInput>&lt;tns:Message>&lt;tns:BinaryMessage>&lt;xsl:value-of select=&quot;$MQTTSubscription/tns1:BinaryMessage&quot;/>&lt;/tns:BinaryMessage>&lt;/tns:Message>&lt;/tns:MQTTPublicationInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.mqtt.MQTTPub"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:mqtt="http://ns.tibco.com/bw/palette/mqtt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/mqtt#//MQTTPub"/>
+                                    <value
+                                    sharedconnection="mqttConnectionResource"
+                                    topic="liveView" xsi:type="mqtt:MQTTPub"/>
                                 </properties>
                             </activityConfig>
                         </bwext:BWActivity>
